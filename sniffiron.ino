@@ -1,3 +1,18 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 // Reflect unexported functions in Espressif SDK
 extern "C" {
 #include "user_interface.h"
@@ -15,13 +30,15 @@ extern "C" {
 #define ON 1
 #define OFF 0
 #define ETH_MAC_LEN 6
-#define IR_TIMEOUT 600000 // 10 minutes in milliseconds
 
 uint16_t broadcast_type1[ETH_MAC_LEN] = {0x01, 0x00, 0x5e};
 uint16_t broadcast_type2[ETH_MAC_LEN] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 uint16_t broadcast_type3[ETH_MAC_LEN] = {0x33, 0x33, 0x00};
 
-uint8_t clientStation[ETH_MAC_LEN] = { 0xdc, 0x09, 0x4c, 0x94, 0xa0, 0x22 };
+/* CONFIGURE THE TWO LINES BELOW */
+uint8_t clientStation[ETH_MAC_LEN] = { 0xdc, 0x09, 0x4c, 0x94, 0xa0, 0x22 }; // Change this to the device MAC to scan for
+#define IR_TIMEOUT 600000 // 10 minutes in milliseconds, change this to something suitable (depends on how often your device sends out a signal)
+
 uint8_t wifiChannel = 1;
 uint32_t lastSeen = 0; // Stores time in milliseconds since last detection, using board power up as epoch
 bool tvState = OFF;
